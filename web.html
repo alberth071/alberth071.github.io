@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title></title>
+   <style type="text/css">
+      *{
+         overflow: hidden;
+         font-family: sans-serif;
+      }
+      .card{
+         
+         width: 100px;
+         height: 175px;
+         border-radius: 5px;
+         display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            background-image: url(background.jpg);
+            background-size:  cover;
+            background-repeat: no-repeat;
+            cursor: pointer;
+
+      }
+   
+      .main_card{
+
+         position: absolute;
+         top: 50%;
+         left:  50%;
+         width: 250px;
+         height: 500px;
+         transform: translate(-50%,-50%);
+         background-image:url(background.jpg);
+         border-radius: 10px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         color: white;
+         opacity: 0;
+          background-size:  cover;
+         background-repeat: no-repeat;
+      }
+      .main_card div p{
+         font-size:25px;
+      }
+   </style>
+
+<body>
+
+   <div class="main_card" id="1">
+      <div style="display: block;text-align: center;">
+            <p>You got:</p>
+      <h2 id="money">Rp50.000</h2>
+      <hr>
+      <h2>"nice one"</h2>
+      </div>
+   
+   </div>
+<div class="card">
+   
+
+</div>
+<div class="card">
+   
+
+</div>
+<div class="card">
+   
+
+</div>
+<div class="card">
+   
+
+</div>
+<div class="card">
+  
+
+</div>
+<div class="card">
+   
+
+</div>
+<div class="card">
+   
+
+</div>
+</body>
+<script type="text/javascript">
+   
+   function move(index){
+      let  i = index
+         let WindowsHeight=window.innerHeight + 5
+   let WindowWidth=window.innerWidth + 5
+   let id = null
+
+      let x = (Math.floor(Math.random() * WindowWidth) + 0)
+      let speed = (Math.floor(Math.random() * 2.0 ) + 0.5)
+      let y =-175
+      clearInterval(id)
+      id=setInterval(down,0)
+      function down(){
+         if(y >= WindowsHeight){
+            clearInterval(id)
+            setTimeout(move(i) , 2000);
+         }
+         else{
+            y+= speed
+            index.style.left=x+'px'
+            index.style.top=y+'px'
+
+         }
+      }
+   }
+   
+   function clickAction(){
+      let cards= document.getElementsByClassName("card")
+for(var i =0;i<cards.length;i++){
+   
+   cards[i].style.opacity=0
+   cards[i].style.display="none"
+}
+show()
+   }
+   function show(){
+       let moneys =['50.000','10.000','25.000','100.000','5000','2000','65.000']      
+      let main_card = document.getElementById("1")
+      main_card.style.opacity=1
+
+      let money = document.getElementById("money")
+      money.innerHTML = "Rp. "+moneys[Math.floor(Math.random()*moneys.length)]
+
+
+   }
+let cards= document.getElementsByClassName("card")
+for(var i =0;i<cards.length;i++){
+   
+   move(cards[i])
+   cards[i].onclick = clickAction
+
+}
+   
+</script>
+</html>
